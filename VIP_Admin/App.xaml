@@ -4,6 +4,21 @@
              xmlns:local="clr-namespace:VIP_Admin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ObjectStyles/ColorStyles.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/ComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/PasswordBoxStyle.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/ButtonExit.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/ButtonRejection.xaml"/>
+                <ResourceDictionary Source="/ObjectStyles/ButStyle.xaml"/>
+
+
+
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,0 +1,76 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="Background" Value="{StaticResource cs_BorderBrush}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="0 2 5 0"/>
+        <Setter Property="Margin" Value="0 3 0 3"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder"
+                            BorderBrush="Chocolate"
+                            BorderThickness="0.5 0.5 0.5 3"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          Grid.Column="1"
+                                          Margin="5 0 0 0"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"/>
+                            <!--<Border Background="{StaticResource}"-->
+                            <Label x:Name="Watermarck"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Foreground="Gray"
+                                   Visibility="Collapsed"
+                                   Padding="5 0 20 0"
+                                   Content="{TemplateBinding Tag}"
+                                   Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Sienna" TargetName="TxtBorder"/>
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="Sienna" TargetName="TxtBorder"/>
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder"/>
+                        </Trigger>
+                        <!--<Trigger Property="BorderBrush" Value="Red">
+                            <Setter Property="BorderBrush" Value="#98163B" TargetName="TxtBorder"/>
+                        </Trigger>-->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermarck"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>
+

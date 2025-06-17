@@ -20,7 +20,8 @@ namespace VIP_Admin
     {
         private List<Application1> requests;
         private Application1 selectedRequests;
-
+        private List<Club> clubs;
+        private Club selectedClub;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         void Signal([CallerMemberName] string prop = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -31,6 +32,24 @@ namespace VIP_Admin
             get => selectedRequests; set
             {
                 selectedRequests = value;
+                Signal();
+            }
+        }
+        public List<Club> Clubs
+        {
+            get => clubs;
+            set
+            {
+                clubs = value;
+                Signal();
+            }
+        }
+
+        public Club SelectedClub
+        {
+            get => selectedClub; set
+            {
+                selectedClub = value;
                 Signal();
             }
         }
@@ -55,6 +74,7 @@ namespace VIP_Admin
         {
 
             Requestes = await APIhost.GetInstance().GetAppls();
+            Clubs = await APIhost.GetInstance().GetClubs();
             await Task.CompletedTask;
         }
 
@@ -82,6 +102,24 @@ namespace VIP_Admin
                 APIhost.GetInstance().ReadyAppls(SelectedRequests);
             }
             Requestes = await APIhost.GetInstance().GetAppls();
+        }
+
+        private void OpenFullApple(object sender, MouseButtonEventArgs e)
+        {
+            FullApple fullApple = new FullApple(SelectedRequests);
+            fullApple.Show();
+            Close();
+        }
+
+        private void Notifications(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenFull(object sender, MouseButtonEventArgs e)
+        {
+            FullClub fullClub = new FullClub(SelectedClub);
+            fullClub.Show(); Close();   
         }
     }
 }

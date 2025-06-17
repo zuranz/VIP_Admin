@@ -95,6 +95,12 @@ namespace VIP_Admin
             }
             return myappls;
         }
+        //public async Task<List<Club>> GetClubs()
+        //{
+        //    List <Club> clubs = new List<Club>();    
+        //    clubs = await client.GetFromJsonAsync<List<Club>>("Clubs", options);
+        //    return clubs;
+        //}
 
         public async Task CreateApples(Application1 NewApplication)
         {

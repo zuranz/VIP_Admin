@@ -1,0 +1,46 @@
+﻿<Window x:Class="VIP_Admin.FullApple"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VIP_Admin"
+        mc:Ignorable="d"
+        Title="FullApple" Height="450" Width="800">
+    <Grid>
+        <Button Cursor="Hand"  Margin="0 15 25 0" Template="{StaticResource ButtonFound}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="BackToTheFuture"/>
+        <StackPanel  Margin="0 -30 0 0"   VerticalAlignment="Center" >
+            <Label  HorizontalAlignment="Center" Content="Заявка" FontWeight="Bold" FontSize="25"/>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15" Margin="20 0 0 0" Content="{Binding Application.IdTypeNavigation.Title}"/>
+                <Label FontSize="15" VerticalAlignment="Center" Margin="5 0 0 0"  Content="{Binding Application.IdClubNavigation.Title}"/>
+
+            </StackPanel>
+            <Label FontSize="15" Height="20"   VerticalAlignment="Center"  Margin="20 0 0 0"  Content="{Binding Application.Title}"/>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15" Margin="20 0 0 0" Content="Дополнительная информация:"/>
+                <TextBlock FontSize="15" Height="15"   VerticalAlignment="Center"  Margin="5" TextWrapping="Wrap"  Text="{Binding Application.Description}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15" Margin="20 0 0 0" Content="Заявитель"/>
+                <TextBlock FontSize="15" IsEnabled="False" Margin="5" Height="15" Text="{Binding Application.IdApplicantNavigation.FirstName}"/>
+                <TextBlock FontSize="15" IsEnabled="False" Margin="5" Height="15"    Text="{Binding Application.IdApplicantNavigation.LastName}"/>
+                <TextBlock FontSize="15" IsEnabled="False" Margin="5" Height="15"  Text="{Binding Application.IdApplicantNavigation.Patronymic}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15" Margin="20 0 0 0" Content="Контакты заявителя"/>
+                <TextBox IsEnabled="False" Margin="5" Height="15"   Text="{Binding Application.IdApplicantNavigation.Phone}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15"  Margin="20 0 0 0" Content="Заполнена"/>
+                <DatePicker Margin="5 0 0 0" SelectedDate="{Binding Application.DateOfFiling}" IsEnabled="False"/>
+            </StackPanel>
+        </StackPanel>
+        <Label FontSize="15" Content="{Binding Application.IdStatusNavigation.Title}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -160 90 0"/>
+        <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin=" 0 0 0 20">
+     <Button FontSize="20" Foreground="Green" MinHeight="40" MinWidth="100" Style="{StaticResource ButtonStyleReg}" Margin="20 0 0 0" Content="Принять" Click="YES"/>
+            <Button FontSize="20" Margin="20 0 0 0" Foreground="#a30000" MinHeight="40" MinWidth="100" Style="{StaticResource ButtonRejectionStyle}" Content="Отказать"  Click="NO"/>
+
+ </StackPanel>
+
+    </Grid>
+</Window>

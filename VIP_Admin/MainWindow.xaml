@@ -7,7 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        
+
+        <Style TargetType="{x:Type Button}" x:Key="TransperentButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border"
+         Background="{TemplateBinding Background}"
+         BorderBrush="{TemplateBinding BorderBrush}"
+         BorderThickness="{TemplateBinding BorderThickness}"
+         Padding="{TemplateBinding Padding}"
+         SnapsToDevicePixels="True">
+                            <ContentPresenter RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <DataTemplate DataType="{x:Type local:Application1}">
             <Grid Width="600" Margin="0 0 0 5" >
@@ -20,26 +47,111 @@
 
                     </StackPanel>
                 </StackPanel>
-                <Label Content="{Binding IdStatusNavigation.Title}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                <StackPanel Orientation="Horizontal" Height="60"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Label Content="{Binding IdStatusNavigation.Title}"  VerticalAlignment="Center" />
+                    <Button Style="{StaticResource TransperentButton}" Height="50" Width="50" Background="Transparent" BorderBrush="Transparent"  Margin="20 0 0 0"  Click="YES">
+                        <Grid>
+                            <Image  Source="/Yes.png" />
+                        </Grid>
+                    </Button>
+
+                    <Button Margin="20 0 0 0" Height="50" Width="50" Style="{StaticResource TransperentButton}" Background="Transparent" BorderBrush="Transparent"   Click="NO">
+                        <Grid>
+                            <Image  Source="/No.png" />
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
             </Grid>
         </DataTemplate>
 
 
+        <DataTemplate DataType="{x:Type local:Club}" x:Key="Clubs">
+        <Grid Width="600" Margin="0 0 0 5" >
+
+            <StackPanel >
+                <Image  Source="/gooseinhat2.png" HorizontalAlignment="Left" Width="200" MinHeight="100"/>
+
+                <Label FontWeight="Bold" FontSize="20" Margin="10 0 0 0" Content="{Binding Title}"/>
+                <StackPanel Orientation="Horizontal">
+
+
+                    <Label FontWeight="Bold" Content="Тип:"/>
+                    <Label Margin="-5 0 0 0" Content="{Binding IdTypeNavigation.Title}"/>
+                </StackPanel>
+
+                <Label FontWeight="Bold" Content="Описание"/>
+
+                <TextBlock  Margin="5 0 0 10" HorizontalAlignment="Left" Width="600"  Text="{Binding Description}" TextWrapping="Wrap"/>
+
+            </StackPanel>
+
+        </Grid>
+        </DataTemplate>
 
 
     </Window.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Height="60">
-                <Button Margin="20" Content="принять" Click="YES"/>
-                <Button Margin="20" Content="отказать"  Click="NO"/>
+        <TabControl Margin="0 10 0 0">
 
-            </StackPanel>
-            <ListBox Height="350" ItemsSource="{Binding Requestes}" Grid.Row="1"
+            <TabControl.Resources>
+                <!-- Переопределяем стандартную панель TabPanel -->
+                <Style TargetType="TabPanel">
+                    <Setter Property="Height" Value="40"/>
+                    <!-- Высота заголовков -->
+                </Style>
+
+                <!-- Стили самих TabItems -->
+                <Style TargetType="TabItem">
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Background" Value="Chocolate" />
+                    <!--<Setter Property="Foreground" Value="White"/>-->
+
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Foreground" Value="Chocolate" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem  Header="Заявки на создание">
+           
+                <StackPanel>
+                    
+                    <!--<StackPanel Orientation="Horizontal" Height="60">
+                        <Button MinHeight="30" MinWidth="100" Style="{StaticResource ButtonStyleReg}" Margin="20 0 0 0" Content="Принять" Click="YES"/>
+                        <Button Margin="20 0 0 0" MinHeight="30" MinWidth="100" Style="{StaticResource ButtonRejectionStyle}" Content="Отказать"  Click="NO"/>
+
+                    </StackPanel>-->
+                    <ListBox Height="350" ItemsSource="{Binding Requestes}" Grid.Row="1" MouseDoubleClick="OpenFullApple"
      SelectedItem="{Binding SelectedRequests}">
-                
-            </ListBox>
-        </StackPanel>
+
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem   Header="Все клубы">
+                <StackPanel>
+                    <Grid Width="{Binding ElementName=mainWindow, Path=ActualWidth}">
+                        <StackPanel  DockPanel.Dock="Left" Orientation="Horizontal">
+                            <ComboBox  ItemsSource="{Binding TypeOfClubs}" DisplayMemberPath="Title" Style="{StaticResource ComboBoxStyle}" Margin="5" Width="150" SelectedItem="{Binding SelectedType}"/>
+                        </StackPanel >
+
+                        <StackPanel Margin="0 3 10 3" HorizontalAlignment="Right" DockPanel.Dock="Right" Orientation="Horizontal">
+                            <TextBox Width="200" Style="{StaticResource TextBoxStyle}" Tag="Введите название"/>
+                            <Button Style="{StaticResource ButtonStyles}" Click="Notifications" Content="найти" Width="50" Margin="5 0 15 0" Cursor="Hand"/>
+                        </StackPanel>
+                    </Grid>
+                    <ListBox Height="350"  ItemTemplate="{StaticResource Clubs}" MouseDoubleClick="OpenFull" ItemsSource="{Binding Clubs}" Grid.Row="1"
+SelectedItem="{Binding SelectedClub}">
+
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
