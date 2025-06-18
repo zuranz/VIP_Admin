@@ -95,6 +95,7 @@ namespace VIP_Admin
             }
             return myappls;
         }
+
         //public async Task<List<Club>> GetClubs()
         //{
         //    List <Club> clubs = new List<Club>();    

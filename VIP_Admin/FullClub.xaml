@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VIP_Admin"
         mc:Ignorable="d"
+        x:Name="Win"
         Title="FullClub" Height="450" Width="800">
     <Window.Resources>
 
@@ -19,35 +20,36 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource heightOffsetConverter}}" >
             <StackPanel Margin="0 -10 0 0" Width="{Binding ElementName=Win, Path=ActualWidth}"  VerticalAlignment="Center" >
 
-                <Label FontSize="15" Height="25" Margin="20 -50 0 0" Content="Название клуба"/>
-                <TextBox FontSize="15"  Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  VerticalAlignment="Center"  Margin="-50 -10 0 0" Style="{StaticResource TextBoxStyle}" Text="{Binding Application.Title}"/>
+                <Label FontSize="15"  Margin="20 -40 0 0" Content="Название клуба"/>
+                <TextBox FontSize="15" Padding="0 0 0 0"  Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  VerticalAlignment="Center"  Margin="-50 -10 0 0" Style="{StaticResource TextBoxStyle}" Text="{Binding Club.Title}"/>
                 <Label FontSize="15" Margin="20 -3 0 -5" Content="Описание деятельности"/>
-                <TextBox FontSize="15" Margin="-50 0 0 0"  Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"
+                <TextBox Padding="0 0 0 0" FontSize="15" Margin="-50 0 0 0"  Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"
                        TextWrapping="Wrap"
                        Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}, ConverterParameter=BigTextBox}"
-                       Style="{StaticResource TextBoxStyle}" Text="{Binding Application.Description}"/>
-                <Label FontSize="15" Margin="20 -3 0 -5" Content="Ваше имя"/>
-                <TextBox FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Application.User.FirstName}"/>
+                       Style="{StaticResource TextBoxStyle}" Text="{Binding Club.Description}"/>
+                <Label FontSize="15" Margin="20 -3 0 -5" Content="Имя руководителя"/>
+                <TextBox Padding="0 0 0 0" FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Club.IdBossNavigation.FirstName}"/>
                 <Label FontSize="15" Margin="20 -3 0 -5" Content="Вашу фамилию"/>
-                <TextBox FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Application.User.LastName}"/>
+                <TextBox Padding="0 0 0 0" FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Club.IdBossNavigation.LastName}"/>
                 <Label FontSize="15" Margin="20 -3 0 -5" Content="Ваше отчество"/>
-                <TextBox IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Application.User.Patronymic}"/>
+                <TextBox Padding="0 0 0 0" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Club.IdBossNavigation.Patronymic}"/>
                 <Label FontSize="15" Margin="20 -3 0 -5" Content="Ваш телефон"/>
-                <TextBox FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Application.User.Phone}"/>
-                <Button Margin="0 0 0 0" Style="{StaticResource ButtonStyles}" FontSize="15" Content="Изменить" Click="EditClub"/>
+                <TextBox Padding="0 0 0 0" FontSize="15" IsEnabled="False" Margin="-50 0 0 0" Height="{Binding ElementName=Win, Path=ActualHeight, Converter={StaticResource TextBoxHeightOffsetConverter}}" Width="{Binding ElementName=Win, Path=ActualWidth,Converter={StaticResource TextBoxOffsetConverter}}"  Style="{StaticResource TextBoxStyle}" Text="{Binding Club.IdBossNavigation.Phone}"/>
+                <Button Margin="0 30 0 0" Style="{StaticResource ButtonStyles}" Foreground="Chocolate" FontSize="15" Content="Изменить" Click="EditClub"/>
 
             </StackPanel>
-            <StackPanel  Margin="-190 0 0 30" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Width="100" Source="/gooseinhat2.png"/>
-                <Button Margin="0 0 0 20" Click="AddImage" FontSize="13" Content="Изменить фото" Style="{StaticResource ButtonStyles}" Width="100" Height="30" HorizontalAlignment="Left"/>
-                <StackPanel >
-                    <Label FontSize="15" Content="Вид деятельности"/>
-                    <ComboBox FontSize="15" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding TypesAppls}" SelectedItem="{Binding SelectedType}" DisplayMemberPath="Title"/>
-                </StackPanel>
+        
+
+
+
+        </StackPanel>
+        <StackPanel  Margin="0 0 30 30" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Image Width="100" Source="/gooseinhat2.png"/>
+            <Button Margin="0 10 0 20" Foreground="Chocolate"  Click="AddImage" FontSize="13" Content="Изменить фото" Style="{StaticResource ButtonStyles}" Width="100" Height="30" HorizontalAlignment="Center"/>
+            <StackPanel >
+                <Label FontSize="15" Content="Вид деятельности"/>
+                <ComboBox FontSize="15" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding TypeOfClubs}" SelectedItem="{Binding SelectedType}" DisplayMemberPath="Title"/>
             </StackPanel>
-
-
-
         </StackPanel>
     </Grid>
 </Window>

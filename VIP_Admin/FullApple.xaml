@@ -11,14 +11,14 @@
         <StackPanel  Margin="0 -30 0 0"   VerticalAlignment="Center" >
             <Label  HorizontalAlignment="Center" Content="Заявка" FontWeight="Bold" FontSize="25"/>
             <StackPanel Orientation="Horizontal">
-                <Label FontSize="15" Margin="20 0 0 0" Content="{Binding Application.IdTypeNavigation.Title}"/>
+                <Label FontSize="15" Margin="20 0 0 0" Height="30" Content="{Binding Application.IdTypeNavigation.Title}"/>
                 <Label FontSize="15" VerticalAlignment="Center" Margin="5 0 0 0"  Content="{Binding Application.IdClubNavigation.Title}"/>
 
             </StackPanel>
-            <Label FontSize="15" Height="20"   VerticalAlignment="Center"  Margin="20 0 0 0"  Content="{Binding Application.Title}"/>
+            <Label FontSize="15"    VerticalAlignment="Center"  Margin="20 0 0 0"  Content="{Binding Application.Title}"/>
             <StackPanel Orientation="Horizontal">
                 <Label FontSize="15" Margin="20 0 0 0" Content="Дополнительная информация:"/>
-                <TextBlock FontSize="15" Height="15"   VerticalAlignment="Center"  Margin="5" TextWrapping="Wrap"  Text="{Binding Application.Description}"/>
+                <TextBlock FontSize="15"   VerticalAlignment="Center"   TextWrapping="Wrap"  Text="{Binding Application.Description}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label FontSize="15" Margin="20 0 0 0" Content="Заявитель"/>
@@ -28,7 +28,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label FontSize="15" Margin="20 0 0 0" Content="Контакты заявителя"/>
-                <TextBox IsEnabled="False" Margin="5" Height="15"   Text="{Binding Application.IdApplicantNavigation.Phone}"/>
+                <TextBox  Margin="5" Height="15"   Text="{Binding Application.IdApplicantNavigation.Phone}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label FontSize="15"  Margin="20 0 0 0" Content="Заполнена"/>

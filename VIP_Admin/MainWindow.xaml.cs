@@ -22,6 +22,8 @@ namespace VIP_Admin
         private Application1 selectedRequests;
         private List<Club> clubs;
         private Club selectedClub;
+        private TypeOfClub selectedTypeOfClub;
+        private List<TypeOfClub> typesAppls;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         void Signal([CallerMemberName] string prop = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -70,11 +72,34 @@ namespace VIP_Admin
             DataContext = this;
         }
 
+        public TypeOfClub SelectedType
+        {
+            get => selectedTypeOfClub;
+            set
+            {
+                selectedTypeOfClub = value;
+                Signal();
+
+            }
+        }
+
+        public List<TypeOfClub> TypeOfClubs
+        {
+            get => typesAppls; set
+            {
+                typesAppls = value;
+                Signal();
+            }
+        }
+
         public async Task GetRequests()
         {
 
             Requestes = await APIhost.GetInstance().GetAppls();
             Clubs = await APIhost.GetInstance().GetClubs();
+            TypeOfClubs = await APIhost.GetInstance().GetTypesOfClubs();
+            TypeOfClubs.Insert(0, new TypeOfClub { Id = 0, Title = "Все типы" });
+            SelectedType = TypeOfClubs[0];
             await Task.CompletedTask;
         }
 

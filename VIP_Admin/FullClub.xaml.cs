@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace VIP_Admin
 {
@@ -22,10 +23,19 @@ namespace VIP_Admin
     public partial class FullClub : Window, INotifyPropertyChanged
     {
         private Club club;
+        private TypeOfClub selectedTypeOfClub;
 
         void Signal([CallerMemberName] string prop = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public List<TypeOfClub> TypeOfClubs
+        {
+            get => typesAppls; set
+            {
+                typesAppls = value;
+                Signal();
+            }
+        }
         public Club Club
         { get => club;
             set {
@@ -33,12 +43,38 @@ namespace VIP_Admin
                 Signal();
                 }
         }
+
+        public TypeOfClub SelectedType
+        {
+            get => selectedTypeOfClub;
+            set
+            {
+                selectedTypeOfClub = value;
+                Signal();
+              
+            }
+        }
+
+
+
+        public List<TypeOfClub> typesAppls { get;  set; }
+
         public FullClub(Club club)
         {
             InitializeComponent();
-            Club = club;    
+            Club = club;
+            GetRequests();
+            SelectedType = club.IdTypeNavigation;
+            DataContext = this;
         }
 
+        public async Task GetRequests()
+        {
+
+            TypeOfClubs = await APIhost.GetInstance().GetTypesOfClubs();
+       
+            await Task.CompletedTask;
+        }
         private void BackToTheFuture(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();

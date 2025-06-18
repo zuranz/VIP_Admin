@@ -33,12 +33,14 @@ namespace VIP_Admin
             { 
                 application = value;
                 Signal();
+               
             }
         }
         public FullApple(Application1 application)
         {
             InitializeComponent();
             Application = application;
+            DataContext = this;
         }
 
         private void BackToTheFuture(object sender, RoutedEventArgs e)
