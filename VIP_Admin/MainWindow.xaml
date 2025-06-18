@@ -138,6 +138,7 @@
                     <Grid Width="{Binding ElementName=mainWindow, Path=ActualWidth}">
                         <StackPanel  DockPanel.Dock="Left" Orientation="Horizontal">
                             <ComboBox  ItemsSource="{Binding TypeOfClubs}" DisplayMemberPath="Title" Style="{StaticResource ComboBoxStyle}" Margin="5" Width="150" SelectedItem="{Binding SelectedType}"/>
+                            <Button Content="Удалить" Style="{StaticResource ButtonStyles}"/>
                         </StackPanel >
 
                         <StackPanel Margin="0 3 10 3" HorizontalAlignment="Right" DockPanel.Dock="Right" Orientation="Horizontal">
